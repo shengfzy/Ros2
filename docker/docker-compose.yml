@@ -1,0 +1,19 @@
+services:  # 定义服务（容器）的列表
+  ros2:
+    image: ros2/humble:v1  # 指定容器使用的镜像
+    container_name: ros2_gui
+    environment:
+      - DISPLAY=$(DISPLAY)
+      - QT_X11_NO_MITSHM=1
+    ports:
+      - "2222:22"  # 将主机的80端口映射到容器的80端口
+    volumes:
+      - /home/matteo/git_repository/ros2/share/:/share  # 将主机的./html目录挂载到容器的/usr/share/nginx/html目录
+      - /tmp/.X11-unix/:/tmp/.X11-unix:rw
+    networks:
+      - mynetwork  # 指定容器使用的网络
+    tty : true
+    stdin_open: true
+networks:  # 定义自定义网络
+  mynetwork:
+    driver: bridge  # 使用桥接网络模式
