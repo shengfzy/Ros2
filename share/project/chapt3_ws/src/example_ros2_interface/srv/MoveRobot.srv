@@ -1,0 +1,5 @@
+# distance for forward/back
+float32 distance
+---
+# current position
+float32 pose

@@ -337,6 +337,18 @@ ros2 service find example_interfaces/srv/AddTwoInts
 ros2 interface package sensor_msgs
 ```
 
+- 查看接口列表
+
+```bash
+ros2 interface list
+```
+
+- 查看某个接口详细的内容
+
+```bash
+ros2 interface show std_msgs/msg/String
+```
+
 #### 接口形式
 
 - 话题接口格式: xxx.msg
@@ -386,4 +398,10 @@ string
 uint32 id
 string image_name
 sensor_msgs/Image Image
+```
+
+#### 生成接口包
+
+```bash
+ros2 pkg create example_ros2_interface --build-type ament_cmake --dependencies rosidl_default_generators geometry_msgs
 ```
