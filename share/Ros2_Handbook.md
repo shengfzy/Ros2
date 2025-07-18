@@ -40,7 +40,7 @@ enjoy ros2
 
 ## Ros2 学习篇
 
-### Ros2节点
+### 1. Ros2节点
 
 #### 节点之间交互
 
@@ -84,7 +84,7 @@ ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle
 ros2 run example_parameters_rclcpp parameters_basic --ros-args -p rcl_log_level:=10
 ```
 
-### 功能包与工作空间
+### 2. 功能包与工作空间
 
 #### 工作空间
 
@@ -167,7 +167,7 @@ ros2 pkg prefix  <package-name>
 ros2 pkg xml turtlesim 
 ```
 
-### ROS2构建工具 - Colcon
+### 3. ROS2构建工具 - Colcon
 
 #### 编译示例
 
@@ -241,6 +241,12 @@ colcon build --packages-select YOUR_PKG_NAME
 colcon build --packages-select YOUR_PKG_NAME  --cmake-args -DBUILD_TESTING=0
 ```
 
+#### 编译包及其依赖
+
+```bash
+colcon build --packages-up-to example_interfaces_rclcpp
+```
+
 #### 运行编译的包的测试
 
 ```
@@ -255,7 +261,7 @@ colcon test
 colcon build --symlink-install
 ```
 
-### ROS2 Topic
+### 4. ROS2 Topic
 
 #### ROS2 话题工具
 
@@ -303,7 +309,7 @@ ros2 topic show std_msgs/msg/String
 ros2 topic pub /chatter std_msgs/msg/String 'data: "123"'
 ```
 
-### ROS2 服务常用命令
+### 5. ROS2 服务常用命令
 
 - 查看服务列表
 
@@ -329,7 +335,7 @@ ros2 service type /add_two_ints
 ros2 service find example_interfaces/srv/AddTwoInts
 ```
 
-### ROS2接口命令
+### 5. ROS2接口命令
 
 - 查看某一个接口包下所有的接口
 

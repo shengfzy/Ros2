@@ -14,7 +14,7 @@ public:
     }
 
     void send_request(int a, int b){
-        RCLCPP_INFO(this->get_logger(), "calculate for %ld + %ld", a, b);
+        RCLCPP_INFO(this->get_logger(), "calculate for %d + %d", a, b);
 
         while(!add_ints_client_->wait_for_service(std::chrono::seconds(1))){
             if(!rclcpp::ok()){
