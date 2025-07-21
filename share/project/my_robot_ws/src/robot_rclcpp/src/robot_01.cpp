@@ -42,6 +42,17 @@ public:
             "RobotMove", 
             std::bind(&Robot_Node::handle_robot_move, this, std::placeholders::_1, std::placeholders::_2));
         timer_     = this->create_wall_timer(std::chrono::milliseconds(500), std::bind(&Robot_Node::timer_callback, this));
+        
+        this->declare_parameter("rcl_log_level", 0);
+        this->get_parameter("rcl_log_level", log_level_);
+        this->get_logger().set_level((rclcpp::Logger::Level)log_level_);
+
+        using namespace std::literals::chrono_literals;
+        print_timer_ = this->create_wall_timer(
+            500ms,
+            std::bind(&Robot_Node::print_timer_callback, this)
+        );
+
     }
 
 private:
@@ -50,6 +61,20 @@ private:
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Service<robot_interfaces::srv::RobotMove>::SharedPtr server_;
     rclcpp::Publisher<robot_interfaces::msg::RobotStatus>::SharedPtr publisher_;
+
+    int log_level_;
+    rclcpp::TimerBase::SharedPtr print_timer_;
+
+    void print_timer_callback() {
+        this->get_parameter("rcl_log_level", log_level_);
+        this->get_logger().set_level((rclcpp::Logger::Level)log_level_);
+
+        RCLCPP_DEBUG(this->get_logger(), "DEBUG log.");
+        RCLCPP_INFO(this->get_logger(), "INFO log.");
+        RCLCPP_WARN(this->get_logger(), "WARN log.");
+        RCLCPP_ERROR(this->get_logger(), "ERROR log.");
+        RCLCPP_FATAL(this->get_logger(), "FATAL log.");
+    }
 
     void timer_callback() {
         robot_interfaces::msg::RobotStatus message;
