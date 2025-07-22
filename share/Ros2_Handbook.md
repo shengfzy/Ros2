@@ -411,3 +411,83 @@ sensor_msgs/Image Image
 ```bash
 ros2 pkg create example_ros2_interface --build-type ament_cmake --dependencies rosidl_default_generators geometry_msgs
 ```
+
+### Ros2参数
+
+#### 支持的参数类型
+
+```c
+bool, bool[]
+int64, int64[]
+float64, float64[]
+string, string[]
+byte[]
+```
+
+#### 参数相关命令
+
+- 查看所有节点的参数列表
+
+```bash
+ros2 param list
+```
+
+- 查看参数的详细信息
+
+```bash
+ros2 param describe <node_name> <param_name>
+```
+
+- 获取参数的值
+
+```bash
+ros2 param get <node_name> <param_name>
+```
+
+- 设置参数值
+
+```bash
+ros2 param set <node_name> <param_name> <value>
+```
+
+- 把参数保存起来
+
+```bash
+ros2 param dump <node_name>
+```
+
+- 恢复参数值
+
+```bash
+ros2 param load /turtlesim ./turtlesim.yaml
+```
+
+- 启动节点时加载参数快照
+
+```bash
+ros2 run <package_name> <executable_name> --ros-args --param-file <file_name>
+```
+
+### Ros2 Action
+
+#### Action相关命令
+
+- 获取目前系统中的action列表
+
+```bash
+ros2 action list -t
+```
+
+- 查看action的信息
+
+```bash
+ros2 action info /turtle1/rotate_absolute
+```
+
+- 发送action请求到客户端
+
+```bash
+ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: 1.6}" --feedback
+```
+
+
