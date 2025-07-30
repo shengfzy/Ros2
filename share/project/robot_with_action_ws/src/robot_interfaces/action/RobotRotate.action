@@ -1,0 +1,11 @@
+# Goal
+float32 angle
+---
+# Result
+float32 pos
+---
+# Feedback
+uint32 STATUS_STOP = 1
+uint32 STATUS_ROTATING = 2
+float32 pos
+uint32  status
